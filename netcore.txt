@@ -1,0 +1,425 @@
+InnerText : returns only content/text of all child elements along with styling charateristics
+
+InnerHTML : return text & html content of all child elements
+
+textcontent : return only text /content without styling
+
+=.when we dont return anything from action method(void) it returns no content 204 to client .
+
+
+
+multipart/x-www-urlencoded => separate by key/values pairs ,default for form uploads .same like querystrings
+multipart/form-data when we need to send files/images over network or in the form we use it .
+
+
+API Versioning :
+Through URL
+Thru http header 
+thru query string
+[ApiVersion("1.0")] use this attrbute above controller
+https://www.c-sharpcorner.com/article/api-versioning-in-asp-net-core-web-api/
+
+[ApiController] attribute enables a few features
+
+Attribute routing requirement
+Automatic HTTP 400 responses
+Binding source parameter inference
+Multipart/form-data request inference
+Problem details for error status codes
+
+[FromBody], [FromForm], [FromHeader], [FromQuery], [FromRoute], [FromServices] =>Binding source attributes
+
+Api return types
+ IACtionresult,specific type,Actionresult<type>(this will allow return specific type & statuscodes)
+ 
+
+Exception handling in asp.net webapi is thru using global filters
+In .net core we can use exception middleware
+In MVC => https://www.tutorialsteacher.com/mvc/exception-handling-in-mvc
+Use customerrors set to ON inside web.config & use [HandleError] ,along with application_error method in global.asax file.
+In webforms also we can use Customerrors
+
+Caching in .NET Core
+[ResponseCache()] =>produces max-age & cache-control headers on the response side ,vasybyheader,varybyquerys
+Using cacheprofiles =>create a profile and use it as a attribute above controllers
+or we can use IMemoryCache
+ 
+
+
+OOPS Concepts :
+ APIE 
+   abstraction is a way of thinking, 
+   whereas encapsulation is a technique to implement abstraction.
+
+   Abstraction
+   Polymorphism=>
+that means multiple forms or shapes. You can use polymorphism 
+if you want to have multiple forms of one or more methods of a class with the same name ,method overriding ,method overload
+   Inheritance
+   Encapsulation
+
+Note that C# does not allow a class to inherit multiple classes.
+A class can only achieve multiple inheritances through interfaces.
+
+public 
+private 
+protected-accessible in derived class ,but not part of derived obj
+Internal-accessible in derived class 
+protected internal -
+
+Sealed Class : when we dont want class to be inherited then we use sealed keyword
+
+
+
+Person p = new employee()
+  1.In case of method over riding it checks for object type and only calls method pretaing to that object type i.e employee
+  
+   2. In case of accessing properties or methods through inheritance it follows only variable type 
+   
+    in short method overriding depends on object type & inhertance depends on variable type
+	
+method over riding-
+  without virtual or over ride keywords 
+  
+--over -riding is extending parents class methods 
+-new is all together creating a new method in child class without 
+
+
+SOLID Principles :
+    
+    S-Single responsibility principle.
+	O-Open and closed principle
+	L-Liskav substition principle- Talks about inheritance ,a derived class sud correctly implement base class,subtypes should substitute base types
+	I-Interface segregation=>
+	D-Dependency Inversion =>High-level modules should not depend on low-level modules. Both should depend on abstraction
+	
+
+
+Design Patterns=> CSB
+  Creational Design Patterns->Solves problems related to object creation
+    Singleton
+	Simple-Factory
+	Abstract-Factory
+	Builder Pattern-> to avoid mltiplr parameters construction injection.
+	Prototype - cloning objects
+  Structral -> suggest implementing relationships between classes and objects.
+   Adapter=>
+   Bridge => decouple an abstraction from its implementation so that the two can vary independently
+   Repository Pattern=>
+   Decorator =>
+   Facade Pattern=> Use this pattern to simplify the problem when there 
+   are multiple complex subsystems and interacting with them individually is really difficult/cumbersome.
+   
+  Behavioural- suggest implementing ways of communications between classes and objects.
+  Iterator Pattern  => using ienumerable to send data as readonly / implement ienumerable pattern
+  chain of responsibility => multiple payment options
+  mediator =>
+  observer =>
+  
+
+ Concurrency /Parallelism /Async 
+  https://medium.com/swift-india/concurrency-parallelism-threads-processes-async-and-sync-related-39fd951bc61d
+
+Azure cosmos DB ->
+ Planet scale DB ,data is stored in the form of JSON . NO-Sql DB ,Multi API Support
+ 
+
+Cookies / Localstorage / Session storage 
+
+By default cookies expire on tab close ,so set cookie expiration date 
+Local storage stays forever 
+session expires on tab close .
+
+
+
+Static /Readonly/constant 
+
+
+Cast vs Convert 
+  Cast -> changing datastructure like int to double etc..where the compiler is sure of not changing type
+  Convert/try parse -> use when casting isnt allowed like string to int . here string may or maynot contain numbers .
+  
+Functions /Stored Procedures 
+  1.Only select statements no DML 
+  2.Can only return single values
+  3.cant call proc from here 
+  4.Allow only input params no output 
+  5.can use functions in joins .
+  
+Delagates -Function Pointer 
+ 3 buildt-in delegates 
+   1.Func -> takes 0 or more params and returns 1 params
+   2.Action-> Same as func delegate but with no return type .can take 0-16 params
+   3.Predicate->takes one input parameter and boolean return type.
+ 
+ 
+Hashtable vs Dictionary 
+  1.Hash -> system.collections means can store any datatype & not strongly typed vs dict is generic collections and strongly typed
+  2.both dont accept duplicates
+  3.data retrieval is slow becz of boxing & unboxing in Hash
+  4.
+    
+
+
+state management in webforms
+ 1.view state ,query strings,hidden fields,cookies
+ 2.Session ,
+ 
+Response.redirect vs server.transfer 
+ 
+
+DOTNET RESTORE
+
+Caching in .Net core 
+  1.Response Cache 
+  2.IMemoryCache
+  3.Distributed cache by redis
+  
+
+Bundling & Minification of css/Javascript files use extension
+HTML Minification is also possible use extensions available 
+CDN - Distributed network serving static files -> Content cached is stored in edge servers.
+
+
+Custom Middleware in 3 types
+1.just using app.use /app.run
+2. by request delegate 
+3.IMiddlewareInterface where we can inject other services ,best to use
+
+uint-unsigned integers to avoid negative values
+
+HateOS -> Making RestApi self-discoverable by invoking links at the root of url 
+
+Datashaping -> Sending only required columns/fileds from an entity to client side (the required columns can be sent through URL etc..)
+
+
+
+HTTP Verbs :
+ PUT
+ POST
+ DELETE
+ GET
+ PATCH
+ HEAD=>returns metadata about a resource on the server. 
+ This HTTP request method returns all of the headers 
+ associated with a resource at a given URL, but does not actually return the resource.
+ like content type ,content length ,caching behaviour 
+ OPTIONS=>The HTTP OPTIONS method returns a listing of which HTTP methods are supported and allowed
+   or what headers .allowed .
+
+
+
+Http Status Codes :
+  1XX=>Informational ,100=>continue
+  2XX=>Success => 200=>0k,201 created ,204 no content 
+  3XX=>re-directed => 301 moved permanently
+  4xx=> cLIENT ERROR => 401 Unauth ,404 not found ,400 Bad request , 403 access is forbidden to req page,429 too many requests use for rate limiting
+  5xx=>Server error
+
+
+API Rate Limiting :
+ Number of requests can be made to api in a certain time .
+  different strageries 
+  1.Concurrency limit -> when an user using multiple sessions
+  2.fixed window limit -> 10 req/min and counter variable for counting 
+  3.sliding window limit/counter-->
+  4.Token buket limit -> time & token refilling 
+  5.Leaky Bucket -> FIFO max 3 requests in group/bucket ,serve one after other
+  
+  
+
+Http status codes if we use IACTION return types
+
+
+Async 
+
+Input validation => Data annotation /Fluent validation
+
+put/patch
+
+Jwt ->
+header payload signature
+
+
+migrationbuilder.sql(@"sql stement");
+
+
+store secrets in dotnet core
+
+environments variables
+
+dotnet secret manager tool 
+
+default config of loading
+  appsettings.json
+  appsetting.devp.json
+  env variables
+  
+filters vs middleware   
+  
+Types of filters=>resource,auth,exception,
+
+  order of filters 
+     authorization
+	 resource
+	 action
+	 exception
+	 result
+
+
+custom media types 
+versioning
+
+
+Format response data 
+  Using Content Method to return data => Response-type or content-type is text/plain
+  if the return type is string for other types it returns Json type
+  
+  Using JSONResult => we can return Json response data & change its configuration 
+  
+ Content -negotiation means when user puts Acceptype in header request 
+ 
+
+
+controller action return types
+  specific types
+  action result
+  IAction result
+  
+
+
+Custom Model binder =>IModelbinder when u want own model binding like reading array of ids from request url 
+
+caching using azure cache for redis / caching using inbuilt framework
+  in-memory caching 
+  distributed caching
+  
+  
+testing frameworks -> xUnit is mostly used 
+     attributes=>fact 
+	             inline
+				 theory
+				 
+				 AAA Pattern arrange act assert
+				 
+				 MOQ,Autofixtures,Fluent Assertions packages
+				 
+
+Stored procedures in ef-> fromsql command ,executesqlcommand;				 
+	 
+
+  
+ef core performance tips
+  1.retrieve data using skip & take 
+  2.Disable change tracking for read-only queries => using ASNoTracking 
+  3.Use IQueryable instead of IEnumerable
+  4.Use eager loading instead of lazy loading => eager loading using include
+  5.using async code 
+  6.executeUpdate ExecuteDelete for bulk/batch updates 
+  
+  
+  
+  
+
+
+OverRide * New behaviour 
+
+ Override will depend on object creation ,check object creation and then check is that method over ridden or what then check in derived class
+ 
+ new keyword method can only be accessible within derived class object with drived class variable only . New means a new method 
+ 
+ 
+ 
+ 
+ 
+---MVC Concepts
+ viewbag ,viewdata from controller to view
+ tempdata => view to controller /cont to view /btw action methods
+ 
+ 
+lifetime scopes in .net core 
+ 
+Transient
+Created every time they are requested
+
+Scoped
+Created once per scope; i.e., web request.or any unit of work
+
+Singleton
+Created only for the first request. If a particular instance is specified at registration time,
+ this instance will be provided to all consumers of the registration type.
+ 
+ 
+Ado.net bulk insert 
+1.using Bulkcopy class along with datatable,no use of stored proc here .
+
+2. how to pass a datatable or list of values to stored proc?
+   
+   create a type of table like =>create type Typename as Table(TableName)
+     to this proc pass datatable as input parameter
+ 
+Using EF :
+  We have AddRange method but it inserts one record at a time .
+  for deleting or updating ef uses change tracking so ,on calling savechanges we can do that .
+  its better to use third part library.
+  Or else we can simple use a proc ,update delete using merge command.
+Using ef core :
+  we have framework methods like ExecuteDeleteAsync,InsertManyAsync,ExecuteUpdateAsync
+  ef core AddRange method inserts all rows at once so less round trips ,but other third party libraries provide better performance
+ 
+ 
+ 
+ 
+ 
+ MVC Interview Questions:
+ 
+ Html.RenderAction("RenderItem"); => we can use renderaction when we want to include partial view in Main View .
+ 
+ 
+WCF supports multiple protocols such as HTTP, TCP, IPC, and MSMQ,
+ providing more options for communication.
+ Web services are typically based on standard HTTP protocols such as SOAP, REST, and JSON.
+ 
+ The full form of SOAP in the context of computing is "Simple Object Access Protocol." SOAP is a protocol that allows programs running on different operating systems to
+ communicate with each other over the internet. It uses XML for its message format and is often used in web services and API communication.
+ 
+ 
+using (SqlConnection con = new SqlConnection(dc.Con)) {
+    using (SqlCommand cmd = new SqlCommand("sp_Add_contact", con)) {
+      cmd.CommandType = CommandType.StoredProcedure;
+
+      cmd.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = txtFirstName.Text;
+      cmd.Parameters.Add("@LastName", SqlDbType.VarChar).Value = txtLastName.Text;
+      cmd.Parameters.Add("@Guid", SqlDbType.VarChar, 100);
+      cmd.Parameters["@Guid"].Direction = ParameterDirection.Output;
+      con.Open();
+      cmd.ExecuteNonQuery();
+    }
+  }
+ 
+ 
+Azure PAAS Services :
+
+Azure logic Apps => Automate sheducling with use of triggers .
+Azure Storage:
+Azure Blob Storage -Binary Large Objects => File storage =>UNstructed data 
+ log files ,images ,videos ..
+ File storage
+ Queue Storage
+
+Cosmos DB=>
+
+Azure Services =>
+
+Azure functions => Serverless =>Async Processing
+    Demand based Services=>Running small piece of code 
+	
+	Azure service Bus => Messsage Broker service 
+	
+	Azure Stream Analytics => 
+ 
+ 
+ 
+ 
+ 
+ 

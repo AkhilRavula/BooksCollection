@@ -1,0 +1,156 @@
+Data Binding =>
+
+string interpolation  -> {{}} Component to View
+
+event binding  -> 
+
+two way binding -> [(ngModel)] = 'property in ts file'
+
+property binding  -> [value] = "property in ts file"
+
+Input  -> pass data from parent to child 
+
+Output & eventemitter -> pass date from child to parent
+https://www.samarpaninfotech.com/blog/methods-to-share-data-between-angular-components/
+
+
+viewchild ->pass data from child to parent without using eventemitter & output .
+ use services => for un related components.
+
+routing => activatedroute ,router => snapshot for static url, subscribe methods change in url on same component.
+
+Pipes rxjs methods to transform data from api .
+
+absolute /relative url 
+
+ngsubmit()
+
+ngform
+
+form validations
+{
+  touched 
+  pristine
+  valid
+  dirty
+}
+
+template variable for template forms #abc = "ngModel"
+@ViewChild to read template ref varibales on ts file 
+
+Reactiveformsmodule => formgroup vs formbuilder 
+custom validator
+getter method to use in html 
+
+Local storage - 5mb   cookies & session storage
+
+JSON.stringify() is a built-in method in JavaScript that converts a JavaScript object or value to a JSON string
+
+Route resolver 
+Catching error in API -catcherror & throw error .Httpinterceptor
+
+unknown vs any 
+
+Pipes =>pipetransform
+Canactivechildfn
+activatefb ,deactivatefn
+
+token expiry
+
+ngtemplate => used for ngif else condition
+,ngcontent => used to pass html content from parent to child
+,ng-container => used with structural direct as dummy html 
+
+we cant use multiple structural directires on single element
+
+async pipes
+how to unsubcribe from observable?? 
+https://www.telerik.com/blogs/angular-basics-step-by-step-understanding-async-pipe
+
+
+change detection stragery -On push ,Default  private cd: ChangeDetectorRef => service
+
+Rxjs Tap Function to debug observable 
+
+
+Lazy Loading => need to create seprarate modules
+
+load children() use in Routing=> for lazy loading modules 
+
+
+Angular 1 vs Angular 2 
+
+   JavaScript - Typescript 
+   NO-Lazy loading - Yes
+   NO-Server side rendering - Yes 
+   Controller based-component based 
+
+   
+
+Directives -change the HTML Dom SAC 
+   Structural directies  *ngfor,*ngif ->add or remove DOM Elements
+   Attribute             ngModel,ngClass -> change behaviour /appereance
+   Component                             --> its compoent in angualr or user control
+   
+Decorator ->defines what kind of class it is 
+  @Component
+  @ngModel
+  @ngService
+ 
+
+  for Dependency Injection
+     Use providers array in Module ,add your service 
+Benefit =>Helps to decouple classes by centralizing object creation /destruction
+
+Constructor vs ngOnInit
+   cobstructor is class concept used by JavaScript
+   ngonit is concept of angular called by angular framework
+   
+   Use constructor for intialization bcz DOM is rendered only after constructor ,so we cant manipulate dom elements inside constructor
+   
+Angular life cycle hooks
+
+    ngOnChanges: Invoked when a data-bound input property value changes.
+ngOnInit: Invoked after the first ngOnChanges.
+ngOnDestroy: Invoked when the directive, component, or pipe is destroyed.
+ngAfterViewInit: Invoked when the component's view has been fully initialized.
+	  
+Content Projection
+
+
+	  
+Renderer2 -> Used as a part of directive to change behaviour /styles 
+If we want to listen to events occuring on directices use @HostListener
+@HostBinding is another way of changing behaviour of DOM using directives
+
+
+Rxjs->used for async data streams
+   Reactive extensions for JavaScript
+   
+Promises vs Observable 
+   Not lazy vs lazy means unless u subscribe an HTTP request isnt and data is not recieved.
+   Emits single value vs emits stream of data 
+   cannot unsubscribe vs can unsubcribe at any time 
+   
+
+Ngrx Library whihch uses redux for state management.
+component=>actions=>reducer=>store=>selector=>component
+
+
+
+Jasmine testing framework for angular
+  Karma is test runner
+  
+Angular Performance
+- Use trackBy in ngFor loops
+-Use OnPush change detection strategy
+--Use AOT compilation
+--Unsubscribe from Observables
+--Lazy Loading
+
+Pure pipes are called only when a change detection cycle occurs, 
+and they are only re-evaluated when a pure change to the input occurs.
+ This means that if the input to a pure pipe is the same, the pipe will not be re-run, which can help with performance.
+
+Impure pipes, on the other hand, are called on every change detection cycle,
+ regardless of whether the input has changed or not. This can potentially impact performance as the pipe is re-evaluated each time.

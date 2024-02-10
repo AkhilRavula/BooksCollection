@@ -1,0 +1,127 @@
+Sql interview 
+
+Primary key vs Unique key 
+primary key is not null vs can be null
+
+1 per table (or combination) vs many unique keys
+
+
+char - fixed length  varchar- variable length (depending on data size it will adjust)
+
+Index -Increase search performance 
+
+clustered vs non-clustered Indexs
+
+Window sql functions 
+
+rank skips next rank ,if rank is common ,dense_rank wont skip 
+
+cross join - cartesian product 
+
+clustered vs non-clustered
+ 1.Determines the order in which data will be stored in the table 
+ 2.cluster index is faster 
+ 
+ sql performance tuning 
+ 
+ 1.sql profiler 
+ 2.extended events under management 
+ 3.Query Store
+ 
+ 
+ Table Scan-without PK or clustered index ,Index Scan with index without where clause,Index Seek with where clause
+ 
+ Sqlserver physically stores data in the form of datapages .
+ 
+ we read execution plans from right to left & top to bottom .
+ 
+ keylookup & rid lookup=> learn from Kudvenkat videos
+ 
+ 
+ 
+ Why Views :
+  1.Hides complexity 
+  2.Secuirty Mechanism 
+  3.Simply supporting legacy code 
+  
+
+
+ACID Properties for a transcation:
+
+Atomicity =>Either all or None
+Consistency =>The total amount before and after the transaction must be maintained. 
+Isolation => This property ensures that multiple transactions can occur concurrently 
+             without leading to the inconsistency of the database state.
+Durability => updates /insert sud be permanent
+
+
+sql proc performance tips:
+Include the schema name when calling a database object.=>Use Fully Qualified Name like dbo.procname
+SET NOCOUNT ON
+Avoid Cursors ,Use set based queries wherever possible means joins
+have proper indexes
+Use joins instead of correlated subqueries.
+
+SQL Server provides various tools and features for 
+performance tuning, such as SQL Server Profiler, Extended Events, and Query Store. 
+
+
+--OFFSET & FETCH
+select  amount_paid from fee order by amount_paid desc OFFSET 2 ROWS FETCH NEXT 1 ROWS ONLY;
+
+
+SELECT *,DENSE_RANK() OVER(ORDER BY AMOUNT_PAID desc) AS ranks from fee order by amount_paid desc;
+
+
+
+
+Javascript :
+
+Undefined : Variable declared ,but value is unassigned 
+Null : Datatype & indicates intentional absence of data 
+
+Hoisting : Mechanism of moving variable declaration / functions to top of the scope .
+ Var variables are hoisted and undefined value is assigned 
+ Let variables are also hoisted but value isnt assigned & throws error 
+
+If we create a variable without var keyword it will become global & available to all functions .(Even when it is inside a function)
+
+closures- are functions inside a function which makes state stateful 
+
+ => need to use self-invoking function inside it another function ;
+  example :
+      const add = (function(){
+	  let counter = 0;
+	  return function(){counter=counter+1; return counter;}
+	  })();
+	  add();
+
+
+Scopes :
+  Block scope - within block let is only accessible /outside block var is accessible .example if loop etc..
+     Variables declared with the var keyword can NOT have block scope.
+  Function scope - var let const within function
+  Global scope - var /let const at top or variable without type
+  
+  
+Promises => to manage async data & manage call back functions .
+  
+  
+  let countValue = new Promise(function (resolve, reject) {
+  resolve("Promise resolved");
+});
+
+// executes when promise is resolved successfully
+
+countValue
+  .then(function successValue(result) {
+    console.log(result);
+  })
+
+  .then(function successValue1() {
+    console.log("You can call multiple functions this way.");
+});
+
+  
+  
+  

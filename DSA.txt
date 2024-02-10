@@ -1,0 +1,34 @@
+Arrays :
+imp topics to check 
+1.
+=>two pointer technique 
+   i & j => i for traversing & j for last zero index
+   
+   if(x[i]!=0)
+    { swap x[i],x[j]
+	 J++;
+	 }
+	 
+=>Find pairs of numbers of x sum 
+
+2.Subsequenc => use recursion approach
+ Look at nbits problem 
+
+3.need to learn quick sort /Merge sort from here
+  https://www.enjoyalgorithms.com/blog/merge-sort-algorithm/
+
+4.Sort 0,1,2
+  3 pointer technique using low mid high = 0 ;
+  https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+
+
+Trees :
+
+N nodes tree will have n-1 edges
+
+Trees Traversal =>
+ Inorder => In(middle so root is middle)
+   Left root right
+ Preorder=>rooot left right
+ Postoirder=>left right root
+ 

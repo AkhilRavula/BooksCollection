@@ -1,0 +1,132 @@
+EF Core :
+
+We need to iterate Linq queries to execute it .
+Use tolist(),toarray(),todictionary();
+
+Select ->Use for transformation (like if select returns multiple columns but u need only few columns in result)
+using (var ctx = new SchoolDBEntities())
+{    
+    var anonymousObjResult = ctx.Students
+                                .Where(st => st.Standard == 1)
+                                .Select(st => new { 
+                                            Id = st.StudentId, 
+                                            Name = st.StudentName });
+
+    foreach (var obj in anonymousObjResult)
+    {
+        Console.Write(obj.Name);
+    }
+}
+
+Use Include to get related entities; 
+var stud1 = ctx.Students
+                   .Include("Standard")
+                   .Where(s => s.StudentName == "Bill")
+                   .FirstOrDefault<Student>();
+				   
+using (var ctx = new SchoolDBEntities())
+        {
+            var stud1 = ctx.Students.Include(s => s.Standard)
+                            .Where(s => s.StudentName == "Bill")
+                            .FirstOrDefault<Student>();
+        }
+
+Multiple Entities Use IncludeThen in efcore .
+In ef use Include("Teachers.Students");=>Use dot operator 
+Inside include use navigation property like Include(s=>s.grade);
+
+EF Rules :
+
+Rules for lazy loading:.
+context.Configuration.ProxyCreationEnabled should be true.
+context.Configuration.LazyLoadingEnabled should be true.
+Navigation property should be defined as public, virtual. Context will NOT do lazy loading if the property is not defined as virtual.
+
+One-One relanship :
+Same column should be primary key & Foreign Key 
+
+Many-Many Relanship:
+Ex: Books & Authors
+
+A many-to-many relationship between tables is accommodated in databases by means of
+ junction tables. A junction table contains the primary key columns of the two tables you want to relate.
+Columns of junction are foreign to primary tables.
+
+Joins in EF :
+
+
+var innerJoin = studentList.Join(// outer sequence 
+                      standardList,  // inner sequence 
+                      student => student.StandardID,    // outerKeySelector
+                      standard => standard.StandardID,  // innerKeySelector
+                      (student, standard) => new  // result selector
+                                    {
+                                        StudentName = student.StudentName,
+                                        StandardName = standard.StandardName
+                                    });
+									
+									
+from s in studentList // outer sequence
+                      join st in standardList //inner sequence 
+                      on s.StandardID equals st.StandardID // key selector 
+                      select new { // result selector 
+                                    StudentName = s.StudentName, 
+                                    StandardName = st.StandardName 
+                                };
+
+lEARN ABOUT GROUP jOIN too 
+https://www.tutorialsteacher.com/linq/linq-joining-operator-groupjoin
+
+
+left join =>dont forget to use tolist();since ef queries have deferred execution;
+
+  direct left ,right,outer joins are not available on ef ,we need to use into & defaultifempty .
+  https://dotnettutorials.net/lesson/full-outer-join-in-linq/
+            var leftjoinboth = (from stu in studentList
+                               join sta in standardList
+                               on stu.StandardID equals sta.StandardID into studentdetails
+                               from m in studentdetails.DefaultIfEmpty()
+                               select new {
+                                StudentId = stu?.StudentID,
+                                Studentname=stu?.StudentName,
+                                StandardName=m?.StandardName                            
+                               }).ToList();
+
+
+            var Rightjoinboth = (from sta in standardList 
+                                 join stu in studentList 
+                                 on sta.StandardID equals stu.StandardID into studentdetails
+                                 from m in studentdetails.DefaultIfEmpty()
+                                 select new {
+                                     StudentId = m?.StudentID,
+                                     Studentname = m?.StudentName,
+                                     StandardName = sta?.StandardName
+                                 }).ToList();
+
+            var fullouterjoin = leftjoinboth.Union(Rightjoinboth);
+
+
+
+
+EF Saving/Updating/deleting in connected & disconnected secnario
+
+for query 
+dbcontxt.entity() or dbcontext.Set<enity>();
+
+for add ,update remove
+either use dbcontx.Entity.Add(obj) or dbcontext.add<entity>(obj);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
